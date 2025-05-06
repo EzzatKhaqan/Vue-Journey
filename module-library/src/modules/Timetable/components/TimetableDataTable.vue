@@ -9,9 +9,9 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="timetable-wrapper">
+    <div class="e-timetable-wrapper">
         <TimetableCaption />
-        <div class="timetable-datatable">
+        <div class="e-timetable-datatable">
             <table>
                 <tr>
                     <TimetableHeader />
@@ -26,7 +26,7 @@ const props = defineProps({
 </template>
 
 <style>
-.timetable-wrapper {
+.e-timetable-wrapper {
     padding: 35px;
     background: var(--e-white);
     border-radius: 5px;
@@ -39,21 +39,21 @@ const props = defineProps({
     flex-direction: column;
 }
 
-.timetable-datatable {
+.e-timetable-datatable {
     width: 100%;
     height: 100%;
     overflow: auto;
 }
 
-.timetable-wrapper table {
+.e-timetable-wrapper table {
     border-collapse: collapse;
 }
 
-.timetable-wrapper table tr:first-child {
+.e-timetable-wrapper table tr:first-child {
     border: 1px solid black;
 }
 
-.timetable-wrapper table tr th {
+.e-timetable-wrapper table tr th {
     min-width: 30px;
     padding: 5px;
     border: 2px solid #e2e8f0;
@@ -61,7 +61,7 @@ const props = defineProps({
     font-weight: 300;
 }
 
-.timetable-wrapper table tr td {
+.e-timetable-wrapper table tr td {
     width: 150px;
     height: 100px;
     background-color: #ffff;

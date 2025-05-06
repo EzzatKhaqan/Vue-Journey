@@ -3,7 +3,7 @@
 </script>
 <template>
 
-    <div class="timetable-caption">
+    <div class="e-timetable-caption">
         <p>
             Caption
         </p>
@@ -13,7 +13,7 @@
 
 
 <style scoped>
-.timetable-caption {
+.e-timetable-caption {
     width: 100%;
     height: 50px;
     background-color: #ffa500;

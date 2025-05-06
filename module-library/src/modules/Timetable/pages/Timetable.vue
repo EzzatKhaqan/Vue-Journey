@@ -87,5 +87,4 @@ function handleFun(weekday, slot) {
                 @click="handleFun(day.weekday, slot)" />
         </template>
     </TimetableDataTable>
-
 </template>

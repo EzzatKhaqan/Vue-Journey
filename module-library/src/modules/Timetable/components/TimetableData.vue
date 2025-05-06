@@ -15,21 +15,21 @@ const empty = computed(() => {
 <template>
 
     <td :colspan="props.colspan">
-        <div class="wrapper-data" :class="[empty ? 'deactive_border' : 'active_border']">
-            <div class="data" v-if="!empty">
-                <div class="location">
+        <div class="e-wrapper-data" :class="[empty ? 'deactive_border' : 'active_border']">
+            <div class="e-data" v-if="!empty">
+                <div class="e-location">
                     <span>{{ props.data.location }}</span>
                     <span>{{ props.data.location }}</span>
                 </div>
-                <div class="lecture">
+                <div class="e-lecture">
                     {{ props.data.subject }}
 
-                    <span class="credit"><b>credits</b> 4</span>
+                    <span class="e-credit"><b>credits</b> 4</span>
                 </div>
-                <div class="lecturer">{{ props.data.teacher }}</div>
+                <div class="e-lecturer">{{ props.data.teacher }}</div>
             </div>
-            <div class="empty_cell-wrapper" v-else>
-                <div class="empty_cell">
+            <div class="e-empty_cell-wrapper" v-else>
+                <div class="e-empty_cell">
                     +
                 </div>
             </div>
@@ -39,7 +39,7 @@ const empty = computed(() => {
 </template>
 
 <style scoped>
-.wrapper-data {
+.e-wrapper-data {
     width: 150px;
     height: 100px;
     background-color: var(--e-surface-ground);
@@ -47,20 +47,20 @@ const empty = computed(() => {
     border-radius: 5px;
 }
 
-.active_border {
+.e-active_border {
     border: 2px dashed var(--e-primary-green);
 }
 
-.deactive_border {
+.e-deactive_border {
     border: 2px dashed var(--e-border-color);
 }
 
-.data {
+.e-data {
     width: 100%;
     height: 100%;
 }
 
-.empty_cell-wrapper {
+.e-empty_cell-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
@@ -68,7 +68,7 @@ const empty = computed(() => {
     align-items: center;
 }
 
-.empty_cell {
+.e-empty_cell {
     width: 35%;
     height: 35%;
     display: flex;
@@ -82,11 +82,11 @@ const empty = computed(() => {
     font-size: 28px;
 }
 
-.wrapper-data:hover {
+.e-wrapper-data:hover {
     cursor: pointer;
 }
 
-.lecture {
+.e-lecture {
     background-color: transparent;
     color: black;
     font-size: 16px;
@@ -99,14 +99,14 @@ const empty = computed(() => {
     position: relative;
 }
 
-.credit {
+.e-credit {
     position: absolute;
     bottom: 0;
     right: 5px;
     font-size: 10px;
 }
 
-.lecturer {
+.e-lecturer {
     background-color: #ffa500;
     color: white;
     font-size: 14px;
@@ -118,7 +118,7 @@ const empty = computed(() => {
     padding: 2px;
 }
 
-.location {
+.e-location {
     display: flex;
     justify-content: space-between;
     background-color: #007bff;
