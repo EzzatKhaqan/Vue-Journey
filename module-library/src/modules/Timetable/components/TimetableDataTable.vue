@@ -1,6 +1,11 @@
 <script setup>
 import TimetableData from './TimetableData.vue';
 import TimetableCaption from './TimetableCaption.vue';
+
+const props = defineProps({
+    data: Object,
+});
+
 </script>
 
 <template>
@@ -9,21 +14,10 @@ import TimetableCaption from './TimetableCaption.vue';
         <table>
             <tr>
                 <th></th>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
+                <td v-for="i in 6" :key="i">{{ i }}</td>
             </tr>
-            <tr>
-                <th>sat</th>
-                <TimetableData :empty_cell="true" />
-                <TimetableData />
-                <TimetableData />
-                <TimetableData />
-                <TimetableData />
-                <TimetableData />
+            <tr v-for="(day, dayIndex) in props.data" :key="dayIndex">
+                <slot name="body" :day="day" />
             </tr>
         </table>
     </div>

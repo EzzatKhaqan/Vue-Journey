@@ -1,16 +1,24 @@
 <script setup>
+import { computed } from "vue";
+
 const props = defineProps({
-    empty_cell: Boolean
+    data: Object,
 });
+
+const empty = computed(() => {
+    if (props.data)
+        return Object.keys(props.data).length > 0 ? false : true;
+})
+
 </script>
 <template>
 
     <td>
-        <div class="wrapper-data" :class="[props.empty_cell ? 'deactive_border' : 'active_border']">
-            <div v-if="!props.empty_cell">
-                <div class="room">124</div>
-                <div class="lecture">Java</div>
-                <div class="lecturer">Dr. Pete</div>
+        <div class="wrapper-data" :class="[empty ? 'deactive_border' : 'active_border']">
+            <div class="data" v-if="!empty">
+                <div class="room">{{ props.data.location }}</div>
+                <div class="lecture">{{ props.data.subject }}</div>
+                <div class="lecturer">{{ props.data.teacher }}</div>
             </div>
             <div class="emplty_cell" v-else>
                 <i class="pi pi-add">+</i>
@@ -36,6 +44,11 @@ const props = defineProps({
 
 .deactive_border {
     border: 2px dashed var(--e-border-color);
+}
+
+.data {
+    width: 100%;
+    height: 100%;
 }
 
 .emplty_cell {
