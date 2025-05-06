@@ -3,6 +3,7 @@ import { computed } from "vue";
 
 const props = defineProps({
     data: Object,
+    colspan: { type: Number, default: 1 }
 });
 
 const empty = computed(() => {
@@ -13,15 +14,24 @@ const empty = computed(() => {
 </script>
 <template>
 
-    <td>
+    <td :colspan="props.colspan">
         <div class="wrapper-data" :class="[empty ? 'deactive_border' : 'active_border']">
             <div class="data" v-if="!empty">
-                <div class="room">{{ props.data.location }}</div>
-                <div class="lecture">{{ props.data.subject }}</div>
+                <div class="location">
+                    <span>{{ props.data.location }}</span>
+                    <span>{{ props.data.location }}</span>
+                </div>
+                <div class="lecture">
+                    {{ props.data.subject }}
+
+                    <span class="credit"><b>credits</b> 4</span>
+                </div>
                 <div class="lecturer">{{ props.data.teacher }}</div>
             </div>
-            <div class="emplty_cell" v-else>
-                <i class="pi pi-add">+</i>
+            <div class="empty_cell-wrapper" v-else>
+                <div class="empty_cell">
+                    +
+                </div>
             </div>
         </div>
     </td>
@@ -30,11 +40,10 @@ const empty = computed(() => {
 
 <style scoped>
 .wrapper-data {
-    width: calc(150px - 5);
+    width: 150px;
     height: 100px;
-    background-color: #f1f5f9;
+    background-color: var(--e-surface-ground);
     margin: 5px;
-    padding: 2px;
     border-radius: 5px;
 }
 
@@ -51,14 +60,26 @@ const empty = computed(() => {
     height: 100%;
 }
 
-.emplty_cell {
+.empty_cell-wrapper {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
-    font-size: 30px;
+}
+
+.empty_cell {
+    width: 35%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--e-surface-ground);
+    text-align: center;
+    border: 1px dashed var(--e-gray);
+    color: var(--e-gray);
+    border-radius: 5px;
+    font-size: 28px;
 }
 
 .wrapper-data:hover {
@@ -68,12 +89,21 @@ const empty = computed(() => {
 .lecture {
     background-color: transparent;
     color: black;
-    font-size: 30px;
+    font-size: 16px;
+    text-align: center;
     width: 100%;
     height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.credit {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    font-size: 10px;
 }
 
 .lecturer {
@@ -83,15 +113,23 @@ const empty = computed(() => {
     font-weight: 600;
     width: 100%;
     height: 20%;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 2px;
 }
 
-.room {
+.location {
+    display: flex;
+    justify-content: space-between;
     background-color: #007bff;
     color: white;
     font-size: 14px;
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 100%;
     height: 20%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 2px;
 }
 </style>

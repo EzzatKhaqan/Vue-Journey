@@ -75,14 +75,14 @@ const timetable = ref(
 );
 
 function handleFun(weekday, slot) {
-    let s = timetable.value[weekday].data.find(s => s.slot == slot.slot).data = { location: 123, teacher: "ABC", subject: "abc" };
+    timetable.value[weekday].data.
+        find(s => s.slot == slot.slot).data = { location: 123, teacher: "ABC", subject: " تحلیل ساختمان" };
 }
 
 </script>
 <template>
-    <TimetableDataTable :data="timetable">
+    <TimetableDataTable :data="timetable" :weekday="weekday">
         <template #body="{ day }">
-            <th>{{ weekday[day.weekday] }}</th>
             <TimetableData v-for="(slot, slotIndex) in day.data" :key="slotIndex" :data="slot.data"
                 @click="handleFun(day.weekday, slot)" />
         </template>

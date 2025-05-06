@@ -26,6 +26,7 @@ import Footer from "./Footer.vue";
     --e-primary-crimson: #DC143C;
     --e-light-crimson: #E74C5B;
     --e-white: #ffff;
+    --e-gray: #a7a7a7;
     --e-soft-gray: #ecf0f1;
     --e-surface-ground: #f1f5f9;
     --e-primary-orange: #FF6F61;

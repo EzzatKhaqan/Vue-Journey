@@ -1,9 +1,9 @@
 <script setup>
-import TimetableData from './TimetableData.vue';
 import TimetableCaption from './TimetableCaption.vue';
-
+import TimetableHeader from './TimetableHeader.vue';
 const props = defineProps({
     data: Object,
+    weekday: Array
 });
 
 </script>
@@ -11,15 +11,17 @@ const props = defineProps({
 <template>
     <div class="timetable-wrapper">
         <TimetableCaption />
-        <table>
-            <tr>
-                <th></th>
-                <td v-for="i in 6" :key="i">{{ i }}</td>
-            </tr>
-            <tr v-for="(day, dayIndex) in props.data" :key="dayIndex">
-                <slot name="body" :day="day" />
-            </tr>
-        </table>
+        <div class="timetable-datatable">
+            <table>
+                <tr>
+                    <TimetableHeader />
+                </tr>
+                <tr v-for="(day, dayIndex) in props.data" :key="dayIndex">
+                    <th>{{ props.weekday[day.weekday] }}</th>
+                    <slot name="body" :day="day" />
+                </tr>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -37,6 +39,11 @@ const props = defineProps({
     flex-direction: column;
 }
 
+.timetable-datatable {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
 
 .timetable-wrapper table {
     border-collapse: collapse;
@@ -46,21 +53,12 @@ const props = defineProps({
     border: 1px solid black;
 }
 
-.timetable-wrapper table tr:first-child th,
-.timetable-wrapper table tr:first-child td {
-    text-align: center;
-    height: 30px;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    background-color: white;
-}
-
 .timetable-wrapper table tr th {
-    width: 20px;
-    height: 60px;
+    min-width: 30px;
+    padding: 5px;
     border: 2px solid #e2e8f0;
-    border-radius: 5px;
-    font-size: 10px;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .timetable-wrapper table tr td {
