@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue CDN</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">{{message}}</div>
+
+    <noscript>
+      <h1>Js is Off with your Browser!</h1>
+      <p>Please turn on js on your Browser settings, then try!</p>
+    </noscript>
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          const message = ref("Hello");
+          return { message };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
