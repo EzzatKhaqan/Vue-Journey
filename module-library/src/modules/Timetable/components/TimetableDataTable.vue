@@ -1,25 +1,32 @@
 <script setup>
 import TimetableCaption from './TimetableCaption.vue';
 import TimetableHeader from './TimetableHeader.vue';
+import { useTimetableTemplate } from "../composables/useTimetableTemplate";
+import { computed, ref } from 'vue';
+
 const props = defineProps({
     data: Object,
     weekday: Array
 });
+const { timetables, timetable_slots } = useTimetableTemplate(props.data);
 
 </script>
 
 <template>
-    <div class="e-timetable-wrapper">
+    <div class="e-timetable-wrapper" v-for="(timetable, tIndex) in timetables" :key="tIndex">
         <TimetableCaption />
         <div class="e-timetable-datatable">
             <table>
-                <tr>
-                    <TimetableHeader />
-                </tr>
-                <tr v-for="(day, dayIndex) in props.data" :key="dayIndex">
-                    <th>{{ props.weekday[day.weekday] }}</th>
-                    <slot name="body" :day="day" />
-                </tr>
+                <tbody>
+                    <tr>
+                        <TimetableHeader :slots="timetable_slots" />
+                    </tr>
+                    <tr v-for="(day, dayIndex) in timetable" :key="dayIndex">
+                        <th>{{ day.weekday }}</th>
+                        <!-- TableData -->
+                        <slot name="body" :day="day" v-if="day.is_empty" />
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -55,6 +62,7 @@ const props = defineProps({
 
 .e-timetable-wrapper table tr th {
     min-width: 30px;
+    height: 100px;
     padding: 5px;
     border: 2px solid #e2e8f0;
     font-size: 14px;

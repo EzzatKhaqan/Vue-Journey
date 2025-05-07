@@ -22,7 +22,7 @@ const empty = computed(() => {
                     <span>{{ props.data.location }}</span>
                 </div>
                 <div class="e-lecture">
-                    {{ props.data.subject }}
+                    {{ props.data.subject_name }}
 
                     <span class="e-credit"><b>credits</b> 4</span>
                 </div>

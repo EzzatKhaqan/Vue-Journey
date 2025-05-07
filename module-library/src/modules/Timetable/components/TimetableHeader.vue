@@ -1,11 +1,14 @@
-<script>
+<script setup>
+const props = defineProps({
+    slots: Array
+});
 </script>
 <template>
 
     <th></th>
-    <td v-for="i in 6" :key="i">
-        <div>{{ i }}</div>
-        <div class="e-time">09:00 - 09:45</div>
+    <td v-for="slot in props.slots" :key="slot.slot">
+        <div>{{ slot.slot }}</div>
+        <div class="e-time">{{ slot.start_time + " - " + slot.end_time }}</div>
     </td>
 </template>
 
@@ -24,6 +27,7 @@
 }
 
 .e-timetable-wrapper table tr:first-child td {
+    min-width: 150px;
     height: 40px;
     padding: 5px;
 }
