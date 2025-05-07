@@ -1,11 +1,20 @@
 <script setup>
-
+const props = defineProps(
+    {
+        data: Object,
+    }
+);
 </script>
 <template>
 
     <div class="e-timetable-caption">
         <p>
-            Caption
+            {{
+                `
+            Timetable of ${props.data?.department?.name} Department
+            Semester ${props.data?.semester?.semester_number + " " + props.data?.semester?.semester_name}
+            `
+            }}
         </p>
     </div>
 

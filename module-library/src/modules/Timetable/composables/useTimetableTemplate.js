@@ -15,12 +15,16 @@ export const useTimetableTemplate = (apiData = [[]]) => {
 
   const timetableTemplate = () => {
     const safeData = apiData.length === 0 ? [[]] : apiData;
-
     for (let i = 0; i < safeData.length; i++) {
       const timetable = [];
-
+      let meta = {
+        department: apiData[i]?.["department"],
+        semester: apiData[i]?.["semester"],
+      };
       for (let weekday of weekdays) {
-        const dayData = safeData[i].find((d) => d.weekday === weekday);
+        const dayData = safeData[i]["timetableEntries"]?.find(
+          (d) => d.weekday === weekday
+        );
 
         const slots = [];
         for (let s = 1; s <= timetable_slots.length; s++) {
@@ -28,10 +32,13 @@ export const useTimetableTemplate = (apiData = [[]]) => {
           slots.push(filledSlot ?? { slot: s, data: {} });
         }
 
-        timetable.push({ weekday, slots, is_empty: apiData.length != 0 });
+        timetable.push({
+          weekday,
+          slots,
+          is_empty: apiData.length !== 0,
+        });
       }
-
-      timetables.value.push(timetable);
+      timetables.value.push({ timetable: timetable, meta: meta });
     }
   };
 
