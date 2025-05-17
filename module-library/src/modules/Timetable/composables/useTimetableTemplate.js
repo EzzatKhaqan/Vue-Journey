@@ -17,10 +17,12 @@ export const useTimetableTemplate = (apiData = [[]]) => {
     const safeData = apiData.length === 0 ? [[]] : apiData;
     for (let i = 0; i < safeData.length; i++) {
       const timetable = [];
+
       let meta = {
         department: apiData[i]?.["department"],
         semester: apiData[i]?.["semester"],
       };
+
       for (let weekday of weekdays) {
         const dayData = safeData[i]["timetableEntries"]?.find(
           (d) => d.weekday === weekday
@@ -38,7 +40,11 @@ export const useTimetableTemplate = (apiData = [[]]) => {
           is_empty: apiData.length !== 0,
         });
       }
-      timetables.value.push({ timetable: timetable, meta: meta });
+      timetables.value.push({
+        timetable: timetable,
+        meta: meta,
+        slots: timetable_slots,
+      });
     }
   };
 
@@ -46,7 +52,5 @@ export const useTimetableTemplate = (apiData = [[]]) => {
 
   return {
     timetables,
-    weekdays,
-    timetable_slots,
   };
 };

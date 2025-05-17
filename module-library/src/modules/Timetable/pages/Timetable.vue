@@ -1,8 +1,8 @@
 <script setup>
 import TimetableDataTable from '../components/TimetableDataTable.vue';
 import TimetableData from "../components/TimetableData.vue";
-import { onBeforeMount, ref } from 'vue';
-
+import { ref } from 'vue';
+import Toolbar from "../../../components/Toolbar.vue";
 const data = ref(
     [
 
@@ -49,16 +49,22 @@ const data = ref(
 
 const handleClick = (weekday, data, slot) => {
     if (Object.keys(data).length) {
-        console.log("Show Update Modal");
-        console.log(weekday, data, slot);
+
     } else {
-        console.log("Show Create Modal");
+
     }
 }
 
 </script>
 <template>
     <TimetableDataTable :data="data">
+        <template #header>
+            <Toolbar>
+                <template #start>
+                    header
+                </template>
+            </Toolbar>
+        </template>
         <template #body="{ day }">
             <TimetableData v-for="(slot, slotIndex) in day.slots" :key="slotIndex" :data="slot.data"
                 @click="handleClick(day.weekday, slot.data, slotIndex + 1)" />

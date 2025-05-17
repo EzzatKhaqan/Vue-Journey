@@ -3,24 +3,24 @@ import TimetableCaption from './TimetableCaption.vue';
 import TimetableHeader from './TimetableHeader.vue';
 import { useTimetableTemplate } from "../composables/useTimetableTemplate";
 
-
 const props = defineProps({
     data: Object,
     weekday: Array
 });
-const { timetables, timetable_slots } = useTimetableTemplate(props.data);
-
+const { timetables } = useTimetableTemplate(props.data);
 
 </script>
 
 <template>
     <div class="e-timetable-wrapper" v-for="(timetable, tIndex) in timetables" :key="tIndex">
+        <slot name="header" :data="timetable.meta" />
+
         <TimetableCaption :data="timetable.meta" />
         <div class="e-timetable-datatable">
             <table>
                 <tbody>
                     <tr>
-                        <TimetableHeader :slots="timetable_slots" />
+                        <TimetableHeader :slots="timetable.slots" />
                     </tr>
                     <tr v-for="(day, dayIndex) in timetable.timetable" :key="dayIndex">
                         <th>{{ day.weekday }}</th>
@@ -46,6 +46,17 @@ const { timetables, timetable_slots } = useTimetableTemplate(props.data);
     display: flex;
     flex-direction: column;
 }
+
+.e-timetable-wrapper .timetable_header {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--e-border-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+
 
 .e-timetable-datatable {
     width: 100%;
