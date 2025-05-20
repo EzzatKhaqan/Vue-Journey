@@ -1,12 +1,37 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+import { Menu } from '../components/index.js';
+
+const model = ref([
+
+    {
+        label: 'Home',
+        items: [
+            {
+                label: 'Home',
+                icon: 'pi pi-home',
+                to: '/',
+            },
+        ],
+    },
+    {
+        label: 'UI Components',
+        items: [
+            {
+                label: 'Timetable ',
+                to: '/timetable',
+                icon: 'pi pi-table',
+            },
+        ],
+    },
+]);
+</script>
 
 <template>
 
     <div class="sidebar">
 
-        <h3>Sidebar</h3>
-        <router-link to="/timetable">Timetable</router-link> <br>
-
+        <Menu :model="model" />
     </div>
 
 </template>
