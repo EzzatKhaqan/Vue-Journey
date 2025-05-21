@@ -5,20 +5,22 @@
     height: 100%;
     background: var(--e-white);
     border: 1px solid var(--e-border-color);
+    border-top: none;
 
     padding: 10px;
     transition: all 0.2s ease-in-out;
     .sidebar-toggle-btn {
       position: absolute;
       top: 10px;
-      right: 10px;
+      right: -12px;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 5px;
       width: 25px;
-      height: 20px;
-      background-color: var(--e-surface-ground);
+      height: 25px;
+      border: 1px solid var(--e-border-color);
+      border-radius: 50%;
+      background-color: var(--e-white);
       z-index: 1000;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
