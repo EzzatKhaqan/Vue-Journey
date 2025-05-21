@@ -1,0 +1,15 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  margin-top: 55px;
+
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 28px;
+    margin-left: 200px;
+    transition: all 0.2s ease-in-out;
+  }
+}
