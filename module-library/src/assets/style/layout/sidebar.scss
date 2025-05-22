@@ -6,6 +6,7 @@
     background: var(--e-white);
     border: 1px solid var(--e-border-color);
     border-top: none;
+    z-index: 100;
 
     padding: 10px;
     transition: all 0.2s ease-in-out;
